@@ -1,13 +1,13 @@
 #include <util/atomic.h> // For the ATOMIC_BLOCK macro
 
 // Encoder
-#define ENCA 3 // yellow wire
-#define ENCB 4 // white wire
+#define ENCA 2 // yellow wire
+#define ENCB 3 // white wire
 
 // Motor
-#define PWM 2
-#define IN1 5
-#define IN2 6
+#define PWM 4
+#define IN1 6
+#define IN2 8
 
 volatile int pos = 0;
 long prevT = 0;
@@ -28,7 +28,7 @@ void setup() {
 void loop() {
     // set target position
     //int target = 1200;
-    int target = -210;
+    int target = 2100;
 
     // PID constants
     float kp = 1;
@@ -63,7 +63,7 @@ void loop() {
     int dir = u < 0 ? -1 : 1;
 
     // signal the motor
-    //setMotor(dir, pwr, PWM, IN1, IN2);
+    setMotor(dir, pwr, PWM, IN1, IN2);
 
     // store previous error
     prevErr = err;
